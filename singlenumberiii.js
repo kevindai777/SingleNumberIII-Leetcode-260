@@ -23,3 +23,25 @@ for (let [key,value] of Object.entries(map)) {
 }
     
 return result
+
+
+//O(n) solution that uses XOR and AND to find the unique two numbers
+
+let diff = 0
+for (let num of nums) {
+    diff ^= num
+}
+
+diff &= -diff
+let result = [0,0]
+
+for (let num of nums) {
+    //If there is no intersection
+    if ((diff & num) == 0) {
+        result[0] ^= num
+    } else {
+        result[1] ^= num
+    }
+}
+
+return result
